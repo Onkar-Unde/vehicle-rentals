@@ -1,0 +1,121 @@
+[{
+        "id": 1,
+        "name": "Royal Enfield Classic 350",
+        "company": "Royal Enfield",
+        "type": "Bike",
+        "image": "/images/bike1.jpg",
+        "pricePerHour": 50,
+        "available": true,
+        "subImages": ["/images/bike1.jpg", "/images/bike2.jpg", "/images/car1.jpg"]
+    },
+    {
+        "id": 2,
+        "name": "Honda Activa 6G",
+        "company": "Honda",
+        "type": "Scooter",
+        "image": "/images/bike2.jpg",
+        "pricePerHour": 30,
+        "available": true,
+        "subImages": ["/images/bike1.jpg", "/images/bike2.jpg", "/images/car1.jpg"]
+    },
+    {
+        "id": 3,
+        "name": "Hyundai i20",
+        "company": "Hyundai",
+        "type": "Car",
+        "image": "/images/car1.jpg",
+        "pricePerHour": 120,
+        "available": true,
+        "subImages": ["/images/bike1.jpg", "/images/bike2.jpg", "/images/car1.jpg"]
+    },
+    {
+        "id": 4,
+        "name": "Kia Seltos",
+        "company": "Kia",
+        "type": "Car",
+        "image": "/images/car2.jpg",
+        "pricePerHour": 150,
+        "available": true,
+        "subImages": ["/images/bike1.jpg", "/images/bike2.jpg", "/images/car1.jpg"]
+    },
+    {
+        "id": 5,
+        "name": "Bajaj Pulsar NS200",
+        "company": "Bajaj",
+        "type": "Bike",
+        "image": "/images/bike1.jpg",
+        "pricePerHour": 40,
+        "available": true,
+        "subImages": ["/images/bike1.jpg", "/images/bike2.jpg", "/images/car1.jpg"]
+    },
+    {
+        "id": 6,
+        "name": "TVS Jupiter",
+        "company": "TVS",
+        "type": "Scooter",
+        "image": "/images/hero1.jpg",
+        "pricePerHour": 25,
+        "available": true,
+        "subImages": ["/images/bike1.jpg", "/images/bike2.jpg", "/images/car1.jpg"]
+    },
+    {
+        "id": 7,
+        "name": "Maruti Swift",
+        "company": "Maruti",
+        "type": "Car",
+        "image": "/images/hero3.jpg",
+        "pricePerHour": 110,
+        "available": true,
+        "subImages": ["/images/hero3_interior1.jpg", "/images/hero3_interior2.jpg"]
+    },
+    {
+        "id": 8,
+        "name": "Suzuki Access 125",
+        "company": "Suzuki",
+        "type": "Scooter",
+        "image": "/images/bike1.jpg",
+        "pricePerHour": 28,
+        "available": true,
+        "subImages": ["/images/bike1_interior1.jpg", "/images/bike1_interior2.jpg"]
+    },
+    {
+        "id": 9,
+        "name": "Yamaha MT-15",
+        "company": "Yamaha",
+        "type": "Bike",
+        "image": "/images/bike2.jpg",
+        "pricePerHour": 45,
+        "available": true,
+        "subImages": ["/images/bike2_interior1.jpg", "/images/bike2_interior2.jpg"]
+    },
+    {
+        "id": 10,
+        "name": "Toyota Innova Crysta",
+        "company": "Toyota",
+        "type": "Car",
+        "image": "/images/car2.jpg",
+        "pricePerHour": 180,
+        "available": false,
+        "subImages": ["/images/car2_interior1.jpg", "/images/car2_interior2.jpg"]
+    },
+    {
+        "id": 11,
+        "name": "Gixxer SF 250",
+        "company": "Suzuki",
+        "type": "Scooter",
+        "image": "/images/bike1.jpg",
+        "pricePerHour": 28,
+        "available": true,
+        "subImages": ["/images/bike1_interior1.jpg", "/images/bike1_interior2.jpg"]
+    },
+    {
+        "id": 12,
+        "name": "Inova Crysta",
+        "company": "Bajaj",
+        "type": "Bike",
+        "image": "/images/hero3.jpg",
+        "pricePerHour": 40,
+        "available": true,
+        "subImages": ["/images/bike1.jpg", "/images/bike2.jpg", "/images/car1.jpg"]
+    }
+]

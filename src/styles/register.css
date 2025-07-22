@@ -1,0 +1,55 @@
+.register-bg {
+    background: url('/images/hero3.jpg') no-repeat center center/cover;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.register-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(8px);
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+
+.auth-form-container {
+    position: relative;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.88);
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 420px;
+}
+
+.auth-form input.form-control {
+    padding-left: 2.5rem;
+    height: 44px;
+}
+
+.input-icon {
+    position: relative;
+}
+
+.input-icon .icon {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    font-size: 1rem;
+    z-index: 2;
+}
+
+.spinner-border {
+    width: 1rem;
+    height: 1rem;
+    vertical-align: middle;
+}

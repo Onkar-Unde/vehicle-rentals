@@ -1,0 +1,26 @@
+.animated-underline::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -5px;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 4px;
+    background: linear-gradient(90deg, #ff6a00, #ffc107, #00c9a7);
+    border-radius: 2px;
+    animation: pulseBar 2s infinite ease-in-out;
+}
+
+.form-check-label {
+    font-weight: 500;
+}
+
+@keyframes pulseBar {
+    0%,
+    100% {
+        transform: translateX(-50%) scaleX(1);
+    }
+    50% {
+        transform: translateX(-50%) scaleX(1.1);
+    }
+}
