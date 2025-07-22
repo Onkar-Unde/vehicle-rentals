@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import jsPDF from "jspdf";
@@ -9,14 +9,18 @@ import {
   collection,
   doc,
   updateDoc,
+  query,
+  where,
+  deleteDoc,
 } from "firebase/firestore";
 
 const BookingHistory = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const [userBookings, setUserBookings] = useState([]);
+  const processedRef = useRef(false); // Prevent re-execution
 
   useEffect(() => {
-    if (!user) return;
+    if (!user || processedRef.current) return;
 
     const allBookings = JSON.parse(localStorage.getItem("bookings")) || [];
     const now = new Date();
@@ -24,7 +28,6 @@ const BookingHistory = () => {
     const activeBookings = [];
     const expiredBookings = [];
 
-    // Separate expired and active bookings
     allBookings.forEach((booking) => {
       if (
         booking.userEmail === user.email &&
@@ -36,7 +39,6 @@ const BookingHistory = () => {
       }
     });
 
-    // Update Firestore for expired bookings
     const processExpired = async () => {
       try {
         const vehicleDocs = await getDocs(collection(db, "vehicles"));
@@ -55,28 +57,64 @@ const BookingHistory = () => {
             console.log(`✔️ Set "${expired.vehicle}" available = true`);
           }
         }
+
+        const updatedBookings = allBookings.filter(
+          (b) => !expiredBookings.includes(b)
+        );
+        localStorage.setItem("bookings", JSON.stringify(updatedBookings));
+        setUserBookings(activeBookings);
+        processedRef.current = true;
       } catch (err) {
         console.error("⚠️ Error updating Firestore availability:", err);
       }
     };
 
     processExpired();
-
-    const updatedBookings = allBookings.filter(
-      (b) => !expiredBookings.includes(b)
-    );
-    localStorage.setItem("bookings", JSON.stringify(updatedBookings));
-    setUserBookings(activeBookings);
   }, [user]);
 
-  const handleCancel = (index) => {
+  const handleCancel = async (index) => {
     const allBookings = JSON.parse(localStorage.getItem("bookings")) || [];
     const toRemove = userBookings[index];
+
+    // Delete from Firestore "bookings"
+    try {
+      const bookingsRef = collection(db, "bookings");
+      const q = query(
+        bookingsRef,
+        where("userEmail", "==", user.email),
+        where("vehicle", "==", toRemove.vehicle),
+        where("startDateTime", "==", toRemove.startDateTime || toRemove.startDate)
+      );
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach(async (docSnap) => {
+        await deleteDoc(doc(db, "bookings", docSnap.id));
+        console.log("🔥 Deleted booking from Firestore:", docSnap.id);
+      });
+    } catch (error) {
+      console.error("❌ Failed to delete booking from Firestore:", error);
+    }
+
+    // Update vehicle availability
+    try {
+      const vehicleDocs = await getDocs(collection(db, "vehicles"));
+      vehicleDocs.forEach(async (docSnap) => {
+        const data = docSnap.data();
+        if (data.name === toRemove.vehicle) {
+          const vehicleRef = doc(db, "vehicles", docSnap.id);
+          await updateDoc(vehicleRef, { available: true });
+          console.log(`✅ Vehicle "${data.name}" marked available`);
+        }
+      });
+    } catch (err) {
+      console.error("⚠️ Error updating vehicle availability:", err);
+    }
+
+    // Remove from localStorage and update UI
     const updated = allBookings.filter((b) => b !== toRemove);
     localStorage.setItem("bookings", JSON.stringify(updated));
-    window.location.reload();
+    const newUserBookings = userBookings.filter((_, i) => i !== index);
+    setUserBookings(newUserBookings);
   };
-
 
   if (!user) {
     return (
