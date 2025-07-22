@@ -41,5 +41,5 @@ A full-stack **React** application for renting vehicles like cars and bikes. Thi
 ### 1. Clone the Repository
 
 ```bash
-git https://github.com/Onkar-Unde/Bike-Rentals-Application
+git https://github.com/Onkar-Unde/vehicle-rentals
 cd vehicle-rentals
